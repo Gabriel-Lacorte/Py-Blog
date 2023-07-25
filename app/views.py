@@ -130,3 +130,7 @@ def logout():
     session.pop('id', None)
     session.pop('usuario', None)
     return redirect('/login')
+
+@app.errorhandler(404)
+def nao_encontrada(erro):
+    return render_template('404.html')
