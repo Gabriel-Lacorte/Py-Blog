@@ -1,0 +1,59 @@
+<!-- templates/post.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <div>
+        <div class="d-flex justify-content-between">
+            <small>Post de: {{ conteudo[0][3] }}</small>
+            <div>
+                {% if session['usuario'] == conteudo[0][3]: %}
+                    <a href="{{ url_for('excluir_post', id=id) }}" role="button" class="btn btn-danger">Apagar</a>
+                {% endif %}
+            </div>
+        </div>
+        <h2 class="break-word">{{ conteudo[0][1] }}</h2>
+        <p class="break-word" style="white-space: pre-wrap">{{ conteudo[0][2] }}</p>
+    </div>
+    <div class="mt-5">
+        <h2>Comentários</h2>
+
+        {% for comentario in comentarios %}
+            <div class="card border-left mt-4">
+                <div class="card-body">
+                    <div class="d-flex flex-start align-items-center">
+                        <div>
+                            <p class="text-muted small mb-1">
+                                Comentário de:
+                            </p>
+                            <h5 class="fw-bold mb-1 break-word">{{ comentario[1] }}</h5>
+                        </div>
+                    </div>
+                    <p class="mt-2 mb-2 pb-0 break-word">
+                        {{ comentario[0] }}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+        <div>
+    </div>
+    {% if 'id' in session %}
+        <div class="mt-5 py-3 my-4 border-top">
+            <form method="POST" action="{{ url_for('postar_comentario', id=id) }}">
+                <label><h4>Postar comentário</h4></label>
+                <textarea name="comentario" class="form-control w-50" rows="3" maxlength="300"></textarea>
+                <button class="btn btn-success mt-3">Publicar</button>
+            </form>
+        </div>
+    {% else %}
+        <div class="alert alert-success mt-5 py-3 my-4 border-top" role="alert">
+            Para postar um comentário você precisa estar logado!
+        </div>
+    {% endif %}
+    {% if erro %}
+        <div class="alert alert-danger mt-5 py-3 my-4 border-top" role="alert">
+            {{ erro }}
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}
