@@ -23,7 +23,7 @@ O servidor estará disponível em http://localhost:5000/.
 
 ## Testando online
 
-Você também pode acessar a versão online do PyBlog [clicando aqui](http://testewebsite.com).
+Você também pode acessar a versão online do PyBlog [clicando aqui](https://lacorte.pythonanywhere.com/).
 
 ## Contribuindo
 
